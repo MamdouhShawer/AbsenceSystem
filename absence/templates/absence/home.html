@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Home</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'absence/style.css' %}">
+</head>
+<body>
+    <div class="form-container">
+        <h2>Welcome to the Absence System</h2>
+        {% if user.is_authenticated %}
+            <p>Hello, {{ user.username }}!</p>
+            <a href="{% url 'my_absences' %}"><button>My Absences</button></a>
+            <form method="post" action="{% url 'logout' %}">
+    {% csrf_token %}
+    <button type="submit">Logout</button>
+</form>
+        {% else %}
+            <a href="{% url 'login' %}"><button>Login</button></a>
+            <a href="{% url 'signup' %}"><button>Sign Up</button></a>
+        {% endif %}
+    </div>
+    
+</body>
+</html>

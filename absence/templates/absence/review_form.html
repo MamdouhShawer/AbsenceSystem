@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Review Form</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'absence/style.css' %}">
+</head>
+<body>
+<div class="form-container">
+    <h2>Review Absence Form</h2>
+    <p><strong>Student:</strong> {{ absence_form.student.name }}</p>
+    <p><strong>Reason:</strong> {{ absence_form.reason }}</p>
+
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Submit Review</button>
+    </form>
+</div>
+</body>
+</html>

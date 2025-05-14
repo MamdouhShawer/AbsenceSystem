@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My Absences</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'absence/style.css' %}">
+</head>
+<body>
+    <div class="form-container">
+        <h2>{{ student.name }} – My Absence Requests</h2>
+        {% if forms %}
+            <ul>
+                {% for form in forms %}
+                    <li style="margin-bottom: 15px;">
+                        <strong>Date:</strong> {{ form.submitted_at|date:"Y-m-d" }}<br>
+                        <strong>Status:</strong> {{ form.get_status_display }}<br>
+                        <strong>Reason:</strong> {{ form.reason }}<br>
+                        {% if form.teacher_feedback %}
+                            <strong>Feedback:</strong> {{ form.teacher_feedback }}
+                        {% endif %}
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No absence forms submitted yet.</p>
+        {% endif %}
+        <a href="/submit/"><button>Submit New Form</button></a>
+    </div>
+</body>
+</html>

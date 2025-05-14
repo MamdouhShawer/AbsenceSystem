@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Pending Reviews</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'absence/style.css' %}">
+</head>
+<body>
+<div class="form-container">
+    <h2>Pending Absence Forms</h2>
+    {% if forms %}
+        <ul>
+            {% for form in forms %}
+                <li>
+                    {{ form.student.name }} — 
+                    <a href="{% url 'review_form' form.id %}">Review</a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No pending forms.</p>
+    {% endif %}
+</div>
+</body>
+</html>

@@ -1,6 +1,8 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 class Student(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)  # ✅ This is required
     student_id = models.CharField(max_length=20, unique=True)
     name = models.CharField(max_length=100)
     email = models.EmailField()
@@ -10,6 +12,7 @@ class Student(models.Model):
 
 
 class Teacher(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)  # ✅ link to Django's User
     name = models.CharField(max_length=100)
     email = models.EmailField()
 
@@ -52,3 +55,5 @@ class Notification(models.Model):
 
     def __str__(self):
         return f"To {self.student.name} on {self.date_sent.strftime('%Y-%m-%d')}"
+
+
