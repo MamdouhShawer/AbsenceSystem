@@ -9,9 +9,11 @@ urlpatterns = [
     path('signup/', views.student_signup, name='signup'),
     path('', views.home, name='home'),
     path('my-absences/', views.my_absences, name='my_absences'),
-    path('submit/', views.submit_absence, name='submit_absence'),   
-   path('logout/', auth_views.LogoutView.as_view(), name='logout'),
+    path('submit/', views.submit_absence, name='submit_absence'),
     path('review/', views.review_list, name='review_list'),
     path('review/<int:form_id>/', views.review_form, name='review_form'),
-     static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 ]
+
+# ✅ Append static files config properly
+if settings.DEBUG:
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
